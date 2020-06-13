@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+	<title>Register</title>
+</head>
+<style>
+.special::-webkit-scrollbar {
+    display: none;
+</style>
+<script>
+		function validatePassword(){
+		   var password = document.getElementById("password");
+		   var confirm_password = document.getElementById("confirm_password");
+		   
+		  if(password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Passwords Don't Match");
+		  } else {
+			confirm_password.setCustomValidity('');
+		  }
+		}
+
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+</script>
+
+<body>
+
+<header class="text-gray-700 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <image src="{% static '/b1.jpg' %}" height="140px" width="140px" >
+    </a>
+    <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+      <a href="{% url 'home' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">Home</font>
+    </button></a>&nbsp;
+      <a href="{% url 'instructions' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">Instructions</font>
+    </button></a>&nbsp;
+	{% if not user.is_authenticated %}
+	  <a href="{% url 'Register' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">Register</font>
+	  </button></a>&nbsp;
+	{% endif %}
+      <a href="{% url 'FAQs' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">FAQs</font>
+    </button></a>&nbsp;
+	  <a href="{% url 'Feedback' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">Contact Us</font>
+    </button></a>&nbsp;
+      <a href="{% url 'Aboutus' %}"><button class="inline-flex items-center bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-700 rounded text-base mt-4 md:mt-0"><font color="white">About Us</font>
+    </button></a>
+    </nav>
+	
+	{% if user.is_authenticated %}
+		<div class="special" style="overflow:auto;max-width: 220px;width:auto;min-height:38px;white-space: nowrap;padding-top:2px;">
+		<a class="inline-flex items-center bg-gray-200 border-0 py-1 px-6 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" style="padding-right:23px;border-left: 1px solid #4baf6b;border-top: 1px solid #4baf6b;border-bottom: 1px solid #4baf6b;"><font color="#808080"><i>{{user.first_name}}</i></font>
+		</a>
+		</div>&nbsp;
+		<a href="{% url 'profile' %}"><button class="inline-flex items-center bg-green-600 border-0 py-1 px-6 focus:outline-none hover:bg-green-800 rounded text-base mt-4 md:mt-0" style="padding-right: 8px;padding-left:8px"><font color="white">&#x27A4;</font>
+		</button></a>&nbsp;&nbsp;
+	{% endif %}
+	
+    {% if not user.is_authenticated %}
+    <a href="{% url 'Login' %}"><button class="inline-flex items-center bg-red-600 border-0 py-1 px-6 focus:outline-none hover:bg-red-800 rounded text-base mt-4 md:mt-0"><font color="white">Log In</font>
+    </button></a>
+	{% else %}
+	
+	<a href="{% url 'logout' %}"><button class="inline-flex items-center bg-red-600 border-0 py-1 px-6 focus:outline-none hover:bg-red-800 rounded text-base mt-4 md:mt-0"><font color="white">Logout</font>
+    </button></a>
+	
+	{% endif %}
+  </div>
+</header>
+<hr>
+
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+      <h1 class="title-font font-medium text-3xl text-gray-900">Farmers are a boon to human kind</h1>
+	  <p class="leading-relaxed mt-4"><i>“To make agriculture sustainable, the grower has got to be able to make a profit.”  <b>– Sam Farr</b></i></p>
+	  <p class="leading-relaxed mt-4"><i>“My grandfather used to say that once in your life you need a doctor, a lawyer, a policeman and a preacher, but every day, three times a day, you need a farmer.”  <b>– Brenda Schoepp</b></i></p>
+      <p class="leading-relaxed mt-4"><i>“A farm is a manipulative creature. There is no such thing as finished. Work comes in a stream and has no end. There are only the things that must be done now and things that can be done later. The threat the farm has got on you, the one that keeps you running from can until can’t is this: do it now, or some living thing will wilt or suffer or die. Its blackmail, really.” <b>– Kristin Kimball</b></i></p>
+	  <p class="leading-relaxed mt-4"><i>“Agriculture is the greatest and fundamentally the most important of our industries. The cities are but the branches of the tree of national life, the roots of which go deeply into the land. We all flourish or decline with the farmer.”  <b>– Bernard Baruch</b></i></p>
+	  <p class="leading-relaxed mt-4"><i>“The farmer is the only man in our economy who buys everything at retail, sells everything at wholesale, and pays the freight both ways.”  <b>– John F. Kennedy</b></i></p>
+	  <p class="leading-relaxed mt-4"><i>“When I help a farmer, I don’t differentiate between them based on their region, as farmers have no borders. I want to live like a world citizen and react like a human being.”  <b>– Prakash Raj</b></i></p>
+    </div>
+    <form class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0" onclick="validatePassword()" action="{% url 'Register' %}" method="POST">
+	{% csrf_token %}
+	<br>
+      <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
+      <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="First Name*" name = "firstname" type="text" title="Enter your First Name" required>
+      <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="Last Name" name = "lastname" type="text" title="Enter your Last Name">
+	  <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="Phone No.*" name = "phone" type="tel" pattern="[1-9]{1}[0-9]{9}" title="Enter a 10 digit number" required>
+	  <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="Email Id*" type="email" name = "email" pattern="[^ @]*@[^ @]*" title="Enter your Email Id" required>
+	  <input id="password" class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="Password*" name = "password" type="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+	  <input id="confirm_password" class="bg-white rounded border border-gray-400 focus:outline-none focus:border-green-500 text-base px-4 py-2 mb-4" placeholder="Confirm Password*" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+      <input class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-700 rounded text-lg" type="submit" value="Sign-Up">
+	  <br>
+	  <center>
+		{% if messages %}
+			{% for msg in messages %}
+				<code>{{msg}} </code>
+			{% endfor %}
+		{% endif %}
+	  </center>  
+    </form>
+  </div>
+</section>
+<hr style="border-top: 2px solid #e6e6e6;">
+<footer class="text-gray-800 body-font">
+	<br>
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <image src="{% static '/b1.jpg' %}" height="100px" width="100px" >
+    </a>
+    <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Clickrishi —
+      <a class="text-gray-700 ml-1" rel="noopener noreferrer" target="_blank">clickrishiteam@gmail.com</a>
+    </p>
+    <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+      <a class="text-gray-600 hover:text-red-700" href ="https://www.facebook.com/Clickrishi-109715740774462/?modal=admin_todo_tour">
+        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+        </svg>
+      </a>
+      <a class="ml-3 text-gray-600 hover:text-red-700"  href="https://twitter.com/clickrishi">
+        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+        </svg>
+      </a>
+      <a class="ml-3 text-gray-600 hover:text-red-700" href ="https://www.instagram.com/clickrishi/">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+        </svg>
+      </a>
+      <a class="ml-3 text-gray-600 hover:text-red-700" href="https://www.linkedin.com/in/clickrishi-team-b338921ab/">
+        <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+          <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+          <circle cx="4" cy="4" r="2" stroke="none"></circle>
+        </svg>
+      </a>
+    </span>
+  </div>
+  <br>
+</footer>
+
+</body>
+</html>

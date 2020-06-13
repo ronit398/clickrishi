@@ -1,0 +1,1 @@
+web: gunicorn clickrishi.wsgi --log-file -
